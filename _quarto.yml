@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "ekmanib.github.io"
+  title: "Blog: Elías José Mantilla Ibarra"
   navbar:
     left:
       - href: index.qmd
