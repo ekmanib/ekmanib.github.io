@@ -4,11 +4,15 @@ project:
 
 website:
   title: "Blog: Elías José Mantilla Ibarra"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  sidebar: 
+    style: "docked"
+    search: true
+    logo: "./assets/logo.jpg"
+    contents: 
+      - section: "Personal Statement"
+        contents: 
+          - index.qmd
+          - about.qmd
 
 format:
   html:

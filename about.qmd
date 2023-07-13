@@ -1,9 +1,15 @@
 ---
-title: "About"
+title: "Curriculum Vitae"
+toc: false
+mainfont: "Baskerville Old Face"
+monofont: "Fire Code"
 ---
 
-About this site
+## Overview
 
-```{r}
-1 + 1
-```
+
+## Experience
+
+## Education
+
+## Projects
