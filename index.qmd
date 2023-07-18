@@ -2,3 +2,8 @@
 title: "Personal Statement"
 author: "Elías José Mantilla Ibarra"
 ---
+
+I began studying Economics in 2019. The choice wasn't easy since I was considering Computer Science as well. During my undergraduate courses, finished in December 2022, I was diligent in researching and asking for the intersection of both fields, economics and computer science. That led me to discover the approach of complex systems to economics, as well as econometrics and statistics. The chances I got to discuss about complex systems, statistics and, in general, the application of computational methods to economics were the instances I most enjoyed during those years in which I also learned Python and R. I like theory but my main focus has remained on applications. I aspire to become a practitioner. More specifically, I'd like to gain experience in building statistical and machine learning models, agent-based, geo-spatial and network models for applications in finance and economics.
+
+
+
