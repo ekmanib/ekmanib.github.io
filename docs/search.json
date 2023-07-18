@@ -2,16 +2,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Elías José Mantilla Ibarra",
+    "title": "Personal Statement",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "I began studying Economics in 2019. The choice wasn’t easy since I was considering Computer Science as well. During my undergraduate courses, finished in December 2022, I was diligent in researching and asking for the intersection of both fields, economics and computer science. That led me to discover the approach of complex systems to economics, as well as econometrics and statistics. The chances I got to discuss about complex systems, statistics and, in general, the application of computational methods to economics were the instances I most enjoyed during those years in which I also learned Python and R. I like theory but my main focus has remained on applications. I aspire to become a practitioner. More specifically, I’d like to gain experience in building statistical and machine learning models, agent-based, geo-spatial and network models for applications in finance and economics."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Curriculum Vitae",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Economist by the University San Francisco de Quito (Cum Laude). Main interest consist of the application of complex systems to the fields of economics and finance. Above, I consider myself a practitioner. I want to learn to use the tools of statistics, machine learning, agent-based models, and simulations to solve problems of the economical and financial sorts."
   },
   {
     "objectID": "about.html#experience",
@@ -33,5 +33,12 @@
     "title": "Curriculum Vitae",
     "section": "Projects",
     "text": "Projects"
+  },
+  {
+    "objectID": "about.html#overview",
+    "href": "about.html#overview",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Economist by the University San Francisco de Quito (Cum Laude). Main interest consist of the application of complex systems to the fields of economics and finance. Above, I consider myself a practitioner. I want to learn to use the tools of statistics, machine learning, agent-based models, and simulations to solve problems of the economical and financial sorts."
   }
 ]
