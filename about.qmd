@@ -1,5 +1,6 @@
 ---
 title: "Curriculum Vitae"
+subtitle: "Elías José Mantilla Ibarra"
 toc: false
 ---
 
