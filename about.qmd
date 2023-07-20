@@ -1,14 +1,26 @@
 ---
 title: "Curriculum Vitae"
 toc: false
-mainfont: "Baskerville Old Face"
-monofont: "Fire Code"
 ---
 
 ## Overview
-Economist by the University San Francisco de Quito (Cum Laude). Main interest consist of the application of complex systems to the fields of economics and finance. Above, I consider myself a practitioner. I want to learn to use the tools of statistics, machine learning, agent-based models, and simulations to solve problems of the economical and financial sorts.
+Economist with Honors (Cum Laude) by the University San Francisco de Quito. During my undergrad I explored a wide variety of advanced classes such as Complexity Economics - where I learned about network data analysis and agent-based modelling. I did a semester of international exchange in Chile (2021) where I farther delved into advanced topics such as economic history and undertook practical work replicating papers in macroeconomics. Additionally, I have experience chiefly as research assistant:
+
+* Wrangling and prepping data for analysis with Pandas (Python)
+* Exploratory data analysis via statistical summaries and data visualization (Python and R)
+* NHST (Null Hypothesis Significance Testing - Python and R). In the frequentist tradition.
+
+Currently working on acquiring the following skills:
+
+* Expand my knowledge on Bayesian Statistics, Comparing Models, Multilevel Models. Reading the fascinating book "Statistical Rethinking" by Richard McElreath.
+* Machine learning and deep learning
+* Spatial and network data analysis
+* Software Engineering
 
 ## Experience
+### Research Assistant at Computational Social Sciences Laboratory USFQ
+
+### Junior Consultant
 
 ## Education
 

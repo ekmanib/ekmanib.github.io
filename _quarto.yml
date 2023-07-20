@@ -13,6 +13,7 @@ website:
         contents: 
           - index.qmd
           - about.qmd
+          - economics.qmd
 
 format:
   html:
