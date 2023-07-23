@@ -1,0 +1,63 @@
+---
+title: "Exploring Fiscal Cycles Across the World"
+subtitle: "Replicating key and interesting figures from 'On graduation from fiscal procyclicality'"
+author: Elías José Mantilla Ibarra
+monofont: "Fira Code"
+---
+
+## Paper's Summary
+Frankel, Vegh, and Vuletin (2011) proposed that the observed shifts from procyclical to countercyclical fiscal policies across a number of economies for the time period ranging from the 1960's to 2000's is due to superior or improved quality of the economy's institutions. They achieved this by means of regression analysis. Indeed, their results show that, even after controlling for other factors that influence the conduct of fiscal policy, the quality of institutions remains a significant and economically important factor. They conclude that higher quality of institutions is associated with reduced procyclicality.
+
+The conduct of fiscal policy matters for a reason. Procyclical fiscal policies, that is, either increased government purchases or reduced tax rates during periods of economic boom and its counterpart, decreased government purchases and tax raises during periods of recessions and burst, are said to exacerbate and prolong the business cycle. By contrast, countercyclical fiscal policy attenuates the business cycle.
+
+Empirical exercises show that, over the past 5 decades, countries exhibiting countercyclical fiscal regimes are overwhelmingly developed and industrialized whereas those exhibiting procyclical are less developed. This fact appears in line with what is observed in other indicators used to gauge the maturity of fiscal policy such as the debt to GDP ratio, rankings by rating agencies and sovereign spreads. The interesting fact singled out by this paper consist of the exploration of changes in the cyclicality of the fiscal regime occurred in some countries.
+
+It is shown that those countries who were once procyclical and are now countercyclical - those termed 'recent graduates' according to the authors - have had a major increase in the quality of their institutions. The quality of institutions was measured as an average of four indices from the International Country Risk Guide dataset. Panel data models were fitted with and without controls to soundly establish the relation between government outlays cyclicality and institutional quality. Results show that institutional quality is, indeed, associated with reduced procyclicality. Further, it is argued that improvements in institutional quality are responsible for the strength of the relationship. Throughout the time periods under study, institutional quality remains unaffected, except for the class of 'recent graduates' that experienced the largest increase.
+
+## Exploratory Analysis
+The World Economic Outlook and the International Country Risk Guide datasets were the main data sources. From these we can obtain time series of real GDP, government expenditures and the four basic indicators to represent institutional quality used in the paper. The results of this partial replication are presented as follows.
+
+```{r}
+#| warning: false
+
+# load all packages in the tidyverse, plus additional packages 
+library(tidyverse)
+library(reshape2)
+
+# Read in and transform the Word Economic Outlook dataset
+df <- 
+  read_tsv('./datasets/procyclicality/weo.txt') %>%
+  select(-c('WEO Country Code', 'ISO', 
+            'Units', 'Scale',
+            'Subject Descriptor', 
+            'Subject Notes',
+            'Country/Series-specific Notes')) %>%
+  filter(`WEO Subject Code` %in% c('NGDP_R', 'GGX', 'LP', 'PPPSH')) %>% 
+  pivot_longer(cols = -c('WEO Subject Code', 'Country'), 
+               names_to = 'Year') %>% 
+  pivot_wider(id_cols = c('Country', 'Year'), 
+              names_from = 'WEO Subject Code') %>%
+  mutate(across(everything(), ~ifelse(. == 'n/a', NA, .)),
+         Year=as.integer(Year),
+         NGDPR=as.numeric(NGDP_R),
+         LP=as.numeric(LP),
+         GGX=as.numeric(GGX),
+         PPPSH=as.numeric(PPPSH))
+
+# Further filter the dataset:
+# Only countries with population above 1 million and a share of word gross product
+df <-
+  df %>%
+  filter(
+    Country %in% 
+      (df %>% 
+         group_by(Country) %>%
+         summarise(pop = last(LP), ppp = nth(PPPSH, 42)) %>%
+         filter(pop > 1, ppp > 0.1) %>%
+         pull(Country))
+  )
+
+```
+
+## References
+Frankel, Jeffrey A., Carlos A. Vegh, and Guillermo Vuletin, 2011, "On Graduation from Fiscal Procyclicality." NBER Working Paper No. 17619 (Cambridge, Massachusetts: National Bureau of Economic Research)

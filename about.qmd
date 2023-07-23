@@ -5,7 +5,7 @@ toc: false
 ---
 
 ## Overview
-Economist with Honors (Cum Laude) by the University San Francisco de Quito. During my undergrad I explored a wide variety of advanced classes such as Complexity Economics - where I learned about network data analysis and agent-based modelling. I did a semester of international exchange in Chile (2021) where I farther delved into advanced topics such as economic history and undertook practical work replicating papers in macroeconomics. Additionally, I have experience chiefly as research assistant:
+Economist with Honors (Cum Laude) by the University San Francisco de Quito, Ecuador. During my undergraduate studies I explored a wide variety of advanced classes such as Complexity Economics - where I learned about network data analysis and agent-based modelling. I did a semester of international exchange in Chile (2021) where I farther delved into advanced topics such as economic history and undertook practical work replicating papers in macroeconomics. Additionally, I have experience chiefly as research assistant:
 
 * Wrangling and prepping data for analysis with Pandas (Python)
 * Exploratory data analysis via statistical summaries and data visualization (Python and R)
@@ -16,7 +16,7 @@ Currently working on acquiring the following skills:
 * Expand my knowledge on Bayesian Statistics, Comparing Models, Multilevel Models. Reading the fascinating book "Statistical Rethinking" by Richard McElreath.
 * Machine learning and deep learning
 * Spatial and network data analysis
-* Software Engineering
+* Software Engineering.
 
 ## Experience
 ### Research Assistant at Computational Social Sciences Laboratory USFQ
