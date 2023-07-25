@@ -1,5 +1,5 @@
 ---
-title: "Exploring Fiscal Cycles Across the World"
+title: "Exploring Fiscal Cyclical Patterns Across the World"
 subtitle: "Replicating key and interesting figures from 'On graduation from fiscal procyclicality'"
 author: Elías José Mantilla Ibarra
 monofont: "Fira Code"
@@ -15,12 +15,17 @@ Empirical exercises show that, over the past 5 decades, countries exhibiting cou
 It is shown that those countries who were once procyclical and are now countercyclical - those termed 'recent graduates' according to the authors - have had a major increase in the quality of their institutions. The quality of institutions was measured as an average of four indices from the International Country Risk Guide dataset. Panel data models were fitted with and without controls to soundly establish the relation between government outlays cyclicality and institutional quality. Results show that institutional quality is, indeed, associated with reduced procyclicality. Further, it is argued that improvements in institutional quality are responsible for the strength of the relationship. Throughout the time periods under study, institutional quality remains unaffected, except for the class of 'recent graduates' that experienced the largest increase.
 
 ## Exploratory Analysis
-The World Economic Outlook and the International Country Risk Guide datasets were the main data sources. From these we can obtain time series of real GDP, government expenditures and the four basic indicators to represent institutional quality used in the paper. The results of this partial replication are presented as follows.
+The World Economic Outlook and the International Country Risk Guide datasets were the main data sources. From these we can obtain time series of real GDP, government expenditures and the four basic indicators to represent institutional quality used in the paper. The results of this partial replication are presented as follows. First, the data must be rearranged and transformed. Second, a general overview of the correlation between government expenditures and real GPD by means of graphical devices. Third, an overview of the influence of institutional quality to the fiscal regime. 
+
+### Data Wrangling
+Our main dataset - the World Economic Forum - must be transformed. The following operations were performed. Data contents were pivoted from wide to long format. The data column containing variable names was pivoted from long to wide format. Finally, the data rows were filtered for countries with a population over 1 million people and whose share of the economic world is over 0.1 percent.
 
 ```{r}
 #| warning: false
+#| error: false
+#| code-fold: true
 
-# load all packages in the tidyverse, plus additional packages 
+# load all packages in the tidyverse, plus additional packages
 library(tidyverse)
 library(reshape2)
 
@@ -37,12 +42,13 @@ df <-
                names_to = 'Year') %>% 
   pivot_wider(id_cols = c('Country', 'Year'), 
               names_from = 'WEO Subject Code') %>%
-  mutate(across(everything(), ~ifelse(. == 'n/a', NA, .)),
-         Year=as.integer(Year),
-         NGDPR=as.numeric(NGDP_R),
-         LP=as.numeric(LP),
-         GGX=as.numeric(GGX),
-         PPPSH=as.numeric(PPPSH))
+  mutate(
+    across(everything(), ~ifelse(. == 'n/a', NA, .)),
+    across(
+      c(Year, NGDP_R, PPPSH, LP, GGX), 
+      ~as.numeric(gsub(',', '', .))
+      )
+    )
 
 # Further filter the dataset:
 # Only countries with population above 1 million and a share of word gross product
@@ -54,10 +60,117 @@ df <-
          group_by(Country) %>%
          summarise(pop = last(LP), ppp = nth(PPPSH, 42)) %>%
          filter(pop > 1, ppp > 0.1) %>%
-         pull(Country))
-  )
+         pull(Country)),
+    Year >= 1995,
+    Country!='Venezuela'
+  ) %>%
+  rename(NGDPR=NGDP_R) %>%
+  select(-c(LP, PPPSH))
 
 ```
+
+### Fiscal Procyclicality Across The World
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 6
+#| fig-format: svg
+
+# Load up the library containing the routine for the Hodrick-Prescott filter
+library(mFilter)
+library(zoo)
+
+# Obtain the cyclical component of GDP and Government expenditures
+df <-
+  df %>%
+  group_by(Country) %>%
+  mutate(
+    across(c(NGDPR, GGX),
+           ~na.locf(., fromLast=TRUE)),
+    across(c(NGDPR, GGX),
+           ~hpfilter(log(.), freq=1)$cycle,
+           .names = '{col}_CYC'),
+  )
+```
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 6
+#| fig-format: svg
+
+df %>%
+  group_by(Country) %>%
+  summarise(COR = cor(NGDPR_CYC, GGX_CYC)) %>%
+  ggplot(aes(x=reorder(Country, COR), y=COR)) +
+  geom_bar(stat = 'identity', width=0.4, fill = '#213cb0') +
+  scale_y_continuous(breaks = seq(-1, 1, 0.25)) +
+  labs(
+    title = 'Across-Country Correlations Between Cyclical Components of GDP and Government Purchases',
+    subtitle = '',
+    x = '',
+    y = ''
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.major.y = element_line(size = .1, color = 'black')
+  )
+```
+
+
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 6
+#| fig-format: svg
+
+# Plot rolling correlations
+df %>%
+  group_by(Country) %>%
+  transmute(ROLCOR = rollapplyr(cbind(NGDPR_CYC, GGX_CYC), 
+                             width=5,
+                             FUN=function(x) cor(x[, 1], x[, 2]),
+                             by.column=FALSE,
+                             fill=NA),
+            Year = Year) %>%
+  ggplot(aes(x = Year, 
+             y = ROLCOR, 
+             group=Country,
+             color=Country,
+             alpha=Country)) +
+  geom_line() +
+  xlim(1999, 2022) +
+  ylim(-1., 1.) +
+  scale_color_manual(values = c('Ecuador'='#d6c720', 'Chile'='blue', 'Canada'='red'), 
+                     na.value = 'gray') +
+  scale_alpha_manual(values = c('Ecuador'=1, 'Chile'=1, 'Canada'=1),
+                     na.value = 0.2) + 
+  labs(
+    title='Rolling Correlation Between The Cyclical Components of GDP and Government Purchases',
+    y = '',
+    x = 'Year'
+  ) + 
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_line(size = .1, color = 'black')
+  )
+
+
+```
+
+### Institutional Quality and Fiscal Procyclicality
 
 ## References
 Frankel, Jeffrey A., Carlos A. Vegh, and Guillermo Vuletin, 2011, "On Graduation from Fiscal Procyclicality." NBER Working Paper No. 17619 (Cambridge, Massachusetts: National Bureau of Economic Research)
