@@ -16,7 +16,7 @@ website:
           - economics.qmd
       - section: "EDA and Visualization"
         contents:
-          - procyclicality.qmd
+          - contents/procyclicality.qmd
       - section: "Statistics"
       - section: "Machine Learning"
       - section: "Deep Learning"

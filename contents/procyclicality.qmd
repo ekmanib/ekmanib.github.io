@@ -31,16 +31,16 @@ library(reshape2)
 
 # Read in and transform the Word Economic Outlook dataset
 df <- 
-  read_tsv('./datasets/procyclicality/weo.txt') %>%
-  select(-c('WEO Country Code', 'ISO', 
+  read_tsv('../datasets/procyclicality/weo.txt') %>%
+  select(-c('WEO Country Code', 
             'Units', 'Scale',
             'Subject Descriptor', 
             'Subject Notes',
             'Country/Series-specific Notes')) %>%
   filter(`WEO Subject Code` %in% c('NGDP_R', 'GGX', 'LP', 'PPPSH')) %>% 
-  pivot_longer(cols = -c('WEO Subject Code', 'Country'), 
+  pivot_longer(cols = -c('WEO Subject Code', 'Country', 'ISO'), 
                names_to = 'Year') %>% 
-  pivot_wider(id_cols = c('Country', 'Year'), 
+  pivot_wider(id_cols = c('Country', 'ISO', 'Year'), 
               names_from = 'WEO Subject Code') %>%
   mutate(
     across(everything(), ~ifelse(. == 'n/a', NA, .)),
@@ -62,7 +62,8 @@ df <-
          filter(pop > 1, ppp > 0.1) %>%
          pull(Country)),
     Year >= 1995,
-    Country!='Venezuela'
+    Country!='Venezuela',
+    Country!='Uzbekistan'
   ) %>%
   rename(NGDPR=NGDP_R) %>%
   select(-c(LP, PPPSH))
@@ -70,6 +71,7 @@ df <-
 ```
 
 ### Fiscal Procyclicality Across The World
+Pro- and counter-cyclicality are measured as the correlation between the cyclical components of two series: real GDP and government purchases. 
 
 ```{r}
 #| warning: false
@@ -96,6 +98,8 @@ df <-
            .names = '{col}_CYC'),
   )
 ```
+
+Fiscal regimes vary widely across the world. It is of interest to understand the reasons behind different policy choices, particularly on the assumption that the optimal policy consist of smoothing the cycle which is consistent with a counter-cyclical regime.
 
 ```{r}
 #| warning: false
@@ -125,7 +129,7 @@ df %>%
   )
 ```
 
-
+Countries once procyclical can adhere to a countercyclical fiscal regime. The fact that this achievement is possible motivates the study for the underlying causes and/or mechanisms that enable this change.
 
 ```{r}
 #| warning: false
@@ -153,10 +157,11 @@ df %>%
   geom_line() +
   xlim(1999, 2022) +
   ylim(-1., 1.) +
-  scale_color_manual(values = c('Ecuador'='#d6c720', 'Chile'='blue', 'Canada'='red'), 
+  scale_color_manual(values = c('Ecuador'='#d6c720', 'Guatemala'='blue', 'United States'='red'), 
                      na.value = 'gray') +
-  scale_alpha_manual(values = c('Ecuador'=1, 'Chile'=1, 'Canada'=1),
+  scale_alpha_manual(values = c('Ecuador'=1, 'Guatemala'=1, 'United States'=1),
                      na.value = 0.2) + 
+  scale_y_continuous(breaks = seq(-.75, .75, 0.25)) +
   labs(
     title='Rolling Correlation Between The Cyclical Components of GDP and Government Purchases',
     y = '',
@@ -170,7 +175,166 @@ df %>%
 
 ```
 
+The countries in the panel exhibit wide differences in their paths. Frankel et al (2011) argue that the observed change has to do with improved quality of institutions. This hypothesis can be founded on a exploratory analysis of the relationship between institutional quality and fiscal pro-cyclicality.
+
 ### Institutional Quality and Fiscal Procyclicality
+Institutional Quality, as measured in Frankel et al (2011), consists of the average of four indicators included in the Political Risk section from the International Country Risk Guide dataset.
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 6
+#| fig-format: svg
+
+# read in a subset of the Political Risk tier from the International Country Risk Guide dataset.
+poli <- 
+  read_tsv('../datasets/procyclicality/icrg.txt') %>%
+  pivot_longer(cols=-c('var', 'Year'), 
+               names_to = 'ISO') %>%
+  pivot_wider(id_cols = c('Year', 'ISO'), 
+              names_from = 'var',
+              values_from = 'value') %>%
+  mutate(ISO = ifelse(ISO == 'ROM', 'ROU', ISO)) %>%
+  rowwise() %>%
+  transmute(ISO=ISO, Year=Year,
+            IQ = mean(c(RQ, VA, CC, GE)))
+
+# Merge new data to main dataframe
+df <-
+  df %>%
+  left_join(poli, by = c('Year', 'ISO')) %>%
+  mutate(IQ = na.spline(IQ)) %>%
+  group_by(Country) %>%
+  mutate(ROLCOR = rollapplyr(cbind(NGDPR_CYC, GGX_CYC), 
+                             width=5,
+                             FUN=function(x) cor(x[, 1], x[, 2]),
+                             by.column=FALSE,
+                             fill=NA)) %>%
+  drop_na()
+
+# Write a function to plot time series
+pltime <- function(df_, country, variable) {
+  
+  llimit <- ifelse(variable=='IQ', 0, -1)
+  colour <- ifelse(variable=='IQ', '#e08f0b', '#1421de')
+  title <- ifelse(variable=='IQ', 
+                  'Institutional Quality Index', 
+                  'Fiscal Procyclicality')
+  df_ %>%
+    filter(Country==country) %>%
+    ggplot(aes(x = Year, y = !!sym(variable))) +
+    geom_line(color=colour) +
+    ylim(llimit, 1) +
+    labs(
+      title = title,
+      x = '',
+      y = ''
+    ) +
+    theme_minimal() +
+    theme(
+      panel.grid.major.y = element_line(size=.1, color='black')
+    )
+}
+```
+
+Institutional quality and fiscal pro-cyclicality appear to be negatively correlated. 
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 3
+#| fig-format: svg
+
+# Import library for a grid of charts
+library(cowplot)
+
+plot_grid(
+  pltime(df, 'Ecuador', 'IQ'),
+  pltime(df, 'Ecuador', 'ROLCOR'),
+  nrow = 1
+)
+```
+
+
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 3
+#| fig-format: svg
+
+#
+plot_grid(
+  pltime(df, 'Guatemala', 'IQ'),
+  pltime(df, 'Guatemala', 'ROLCOR'),
+  nrow = 1
+)
+```
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 3
+#| fig-format: svg
+ 
+#
+plot_grid(
+  pltime(df, 'United States', 'IQ'),
+  pltime(df, 'United States', 'ROLCOR'),
+  nrow = 1
+)
+```
+
+
+```{r}
+#| warning: false
+#| error: false
+#| code-fold: true
+#| output-location: column
+#| fig-width: 12
+#| fig-height: 6
+#| fig-format: svg
+
+
+df %>%
+  filter(Year %in% c(2018, 2019, 2020, 2021)) %>%
+  ggplot(aes(x = IQ, y = ROLCOR, 
+             group = Year, 
+             color = as.factor(Year),
+             s=0.5)
+         ) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(linewidth=0.75,
+              span=0.9,
+              se=FALSE) +
+  guides(
+    color = guide_legend(title='Year')
+  ) +
+  labs(
+    title = 'LOWESS Model For Years 2018 to 2021',
+    y = 'Correlation between GDP and Govt. Purchases',
+    x = 'Institutional Quality Index'
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_line(linewidth = 0.1, colour = 'black')
+  )
+
+```
+
+
 
 ## References
 Frankel, Jeffrey A., Carlos A. Vegh, and Guillermo Vuletin, 2011, "On Graduation from Fiscal Procyclicality." NBER Working Paper No. 17619 (Cambridge, Massachusetts: National Bureau of Economic Research)
