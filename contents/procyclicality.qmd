@@ -264,11 +264,21 @@ It should be stated, as it is in the paper, that we don't know the direction of 
 # Import library for a grid of charts
 library(cowplot)
 
-plot_grid(
+# Draw the title for Ecuador
+title <- 
+  ggdraw() +
+  draw_label("Ecuador", size = 15)
+
+# Plot without title and save
+base <-
+  plot_grid(
   pltime(df, 'Ecuador', 'IQ'),
   pltime(df, 'Ecuador', 'ROLCOR'),
   nrow = 1
 )
+
+# Include title
+plot_grid(title, base, ncol = 1, rel_heights = c(0.15, 1))
 ```
 
 
@@ -282,12 +292,21 @@ plot_grid(
 #| fig-height: 3
 #| fig-format: svg
 
-#
-plot_grid(
+# Draw the title for the US
+title <- 
+  ggdraw() +
+  draw_label("Guatemala", size = 15)
+
+# Plot without title and save
+base <-
+  plot_grid(
   pltime(df, 'Guatemala', 'IQ'),
   pltime(df, 'Guatemala', 'ROLCOR'),
   nrow = 1
 )
+
+# Include title
+plot_grid(title, base, ncol = 1, rel_heights = c(0.1, 1))
 ```
 
 ```{r}
@@ -298,15 +317,25 @@ plot_grid(
 #| fig-width: 12
 #| fig-height: 3
 #| fig-format: svg
- 
-#
-plot_grid(
+
+# Draw the title for the US
+title <- 
+  ggdraw() +
+  draw_label("United States", size = 15)
+
+# Plot without title and save
+base <- 
+  plot_grid(
   pltime(df, 'United States', 'IQ'),
   pltime(df, 'United States', 'ROLCOR'),
   nrow = 1
 )
+
+# Include title
+plot_grid(title, base, ncol = 1, rel_heights = c(0.1, 1))
 ```
 
+A simple algorithm was employed to build a model to represent the relationship between institutional quality and fiscal pro-cyclicality. A loess (Local Polynomial Regression Fitting) curve was fitted to the data for the last four years in the sample. Although not exactly a straight line, increasing institutional quality reduces pro-cyclicality. Let 0.6 be the threshold above which the relation is better approximated linearly. From that threshold onward, it is clear the increases in the institutional quality index  are associated with a decrease in fiscal pro-cyclicaity. This is less obvious for data points below the threshold where the data is more spread out, suggesting that countries with poorer institutional quality vary widely in their fiscal regimes.
 
 ```{r}
 #| warning: false
@@ -327,7 +356,8 @@ df %>%
          ) +
   geom_point(alpha = 0.25) +
   geom_smooth(linewidth=0.75,
-              span=0.9,
+              method = 'loess',
+              span = 1,
               se=FALSE) +
   guides(
     color = guide_legend(title='Year')
@@ -344,7 +374,7 @@ df %>%
 
 ```
 
-
+There exists, therefore, a real and persistent association between institutional quality and fiscal pro-cyclicality. The present work aimed at crafting compelling visualizations that explore this relationship without much emphasis on formal statistical modelling. The resulting figures can serve as the motivation for further work to understand the extent of this relationship after controlling for other factors and to investigate whether there exists a truly causal relationship.
 
 ## References
 Frankel, Jeffrey A., Carlos A. Vegh, and Guillermo Vuletin, 2011, "On Graduation from Fiscal Procyclicality." NBER Working Paper No. 17619 (Cambridge, Massachusetts: National Bureau of Economic Research)
