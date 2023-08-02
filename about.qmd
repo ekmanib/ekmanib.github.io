@@ -20,12 +20,19 @@ Currently working on acquiring the following skills:
 
 ## Experience
 ### Research Assistant at Computational Social Sciences Laboratory USFQ
+#### Quito, Ecuador (2021, Jan - 2022, Jul)
+I work as research assistant for the Data Hub, a project of the Computational Social Science Lab from Universidad San Francisco de Quito. My experience include collecting data, analyzing and visualizing it, and writing short reports as well as presentations. Tools I often use are Python and R.
 
 ### Junior Consultant
+#### Quito, Ecuador (2021, Jun - 2021, Ago)
+As part of a team of four, we conducted the analysis and classification of investment project and other funding from various sources, both public and private, that are flowing to meet the demands of each of the 17 Sustainable Development Goals by the UN. I mainly working with Python to scrape online data.
 
 ## Education
 ### Summer School in Economic Networks - Oxford University
+I attended the Oxford Summer School in Economic Networks. There I learned about the cutting edge research on the field of network science, particularly applied to social phenomena. I now feel confident working with the statistical methods required to analyze network data.
 
 ### Bacherlor's in Economic - Universidad San Francisco de Quito
+Economist (2019-2022)
 
 ### International Student - Pontificia Universidad Católica de Chile
+International Student (2021)

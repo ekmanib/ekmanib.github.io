@@ -17,9 +17,8 @@ website:
       - section: "EDA and Visualization"
         contents:
           - contents/procyclicality.qmd
-      - section: "Statistics"
-      - section: "Machine Learning"
-      - section: "Deep Learning"
+      - section: "Regression"
+      - section: "Classification"
       - section: "Deployment and Integration"
 
 format:
