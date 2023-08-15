@@ -13,7 +13,6 @@ website:
         contents: 
           - index.qmd
           - about.qmd
-          - economics.qmd
       - section: "EDA and Visualization"
         contents:
           - contents/procyclicality.qmd
