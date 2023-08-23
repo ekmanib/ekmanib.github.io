@@ -1,18 +1,39 @@
 ---
-title: "Personal Statement"
-subtitle: "Elías José Mantilla Ibarra"
+title: "About"
+pagetitle: "{{< meta website.title >}}"
+title-block-banner: true
+main-photo: /assets/pictureme.jpg
+main-photo-square: /assets/pictureme_square.jpg
+format: 
+  html: 
+    quarto-template-params:
+      banner-header-class: "home"
 ---
 
-A meaningful life is one devoted to a purpose larger than one's life. This ultimate goal should serve to guide our decisions at both easy and hard times. Although it may seem a difficult choice, I have simplified and rather considered simple, but extremely meaningful, rules of thumb to live and lead by. This rules consist of values I must always uphold, no matter the consequences. They should guide my decisions both in private and intimate settings as well as public and professional.
+::: {.grid}
 
-There are two main values. Under any circumstance I want to remain true to the values of Honesty and Curiosity. One may argue that either one of those is not exactly a virtue, but I'd argue in favor of considering them as such. Honesty entails a commitment to truth while Curiosity entails a commitment to, and appreciation of, the path to knowledge. In order not to be misled, I add the value of Compassion, so as to ensure that I will act in good faith and from a place of love. As life is uncertain and all paths forward intricate, I remain confident in that being responsible in upholding those values will get me somewhere I would want to be.
+::: {.g-col-12 .g-col-sm-4}
+```{=html}
+<div class="grid" style="--bs-columns: 5; row-gap: 0;">
+  <div class="g-col-1 g-col-sm-0"></div>
+  <div class="g-col-3 g-col-sm-5">
+    <picture>
+      <source media="(max-width: 576px)" srcset="{{< meta main-photo-square >}}">
+      <source media="(min-width: 576px)" srcset="{{< meta main-photo >}}">
+      <img class="img-fluid" src="{{< meta main-photo >}}" alt="{{< meta author-meta >}}">
+    </picture>
+  </div>
+  <div class="g-col-1 g-col-sm-0"></div>
+</div>
+```
+:::
 
-This has practical implications for my career path. A non exhaustive list would include: I'll always foster open and transparent environments, no or very little politics; I'll seek growth over comfort; I'll seek autonomy; I'll act in good faith and will demand the same in return, although it cannot be expected. That is as far as I can foresee. My values are firm.
+::: {.g-col-12 .g-col-sm-8}
+Hi there! I'm a young economist based in Quito, Ecuador. I received my Bachelors' degree from San Francisco de Quito university. Due to extensive experience during my Bachelors both from coursework and as a research assistant, I've become well versed in the application of statistics using highly demanded tools such as Python, R, and cloud technologies. At the moment, I'm actively looking for employment.
 
-This does not only mean that I will prefer some environment over other. There are strong consequences regarding my attitudes and daily choices. For instance, in order to deserve a job whose allure has captivated my attention I must put in honest and hard work towards becoming the kind of person that would be suited for the job. It must be the case that I will exhibit the kind of work ethic, in combination with the cunning and intelligence, to learn, create and network my way to the job.
+I was one the founding members of the [Data Hub Project](https://www.usfq.edu.ec/en/node/4116), a center aimed at collecting, tidying, and organizing existent and newly created databases, now part of the Computational Social Sciences lab of the San Francisco de Quito university. There I worked extensively on ETL pipelines that included the use of Python for extracting information, transforming it and uploading it to a remote repository in the cloud. I became acquainted with SQL via Google's Big Query. Also, I gained skills and experience with the scientific computing tack of the Python ecosystem.
 
-As of the time of this writing (20-07-2023), I am an aspiring data scientist. Grosso modo, I'm on the right track but still lack the necessary skills to realistically compete for jobs. 
+Currently focused on building my personal presence online. My interests lie in statistical analysis mainly applied to economics and finance. 
+:::
 
-The times ahead present challenging and joyful days. I'm entirely responsible to fill my days with energy and work, always uplifted by the fact that I am diligent in respecting this commitment that I make to myself. Consistently living up to these rules will imbue my life with meaning and purpose. Otherwise, I will suffer grave consequences. Beyond these rules I do have more specific, material goals that should never distract me from respecting and upholding my values. I must be patient. I must work hard. I must take pride in my good choices. I must not let ambition for quick gains blindfold me. I must aspire the good life.
-
-
+:::

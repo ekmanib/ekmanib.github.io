@@ -1,30 +1,63 @@
 project:
   type: website
   output-dir: docs
+  
+  preview: 
+    port: 5555
+    browser: true
+    watch-inputs: true
+    navigate: true
+  
+  render: 
+    - "*.qmd"
+    
+  resources: 
+    - "assets/"
+    
+# Metadata
+pagetitle: "{{< meta title >}} | Elías Mantilla"
+description-meta: "Elías Mantilla: A personal and professional site"
+author-meta: "Elías Mantilla"
 
 website:
-  title: "Blog: Elías José Mantilla Ibarra"
-  sidebar: 
-    style: "docked"
-    search: true
-    logo: "./assets/logo.jpg"
-    contents: 
-      - section: "Personal Statement"
-        contents: 
-          - index.qmd
-          - about.qmd
-      - section: "EDA and Visualization"
-        contents:
-          - contents/procyclicality.qmd
-      - section: "Regression"
-      - section: "Classification"
-      - section: "Deployment and Integration"
+  title: "Elías José Mantilla Ibarra"
+  description: "{{< meta description-meta >}}"
+  
+  
+  navbar: 
+    pinned: True
+    
+    left: 
+      - text: "About"
+        href: "index.qmd"
+      - text: "CV"
+        href: "cv/index.qmd"
+      - text: "Blog"
+        file: "blog/index.qmd"
+        
+    right: 
+      - icon: twitter
+        aria-label: twitter
+        href: https://twitter.com/ejmantilla
+        rel: me
+      - icon: github
+        aria-label: github
+        href: https://github.com/ekmanib
+        rel: me
+      - icon: linkedin
+        aria-label: linkedin
+        href: https://www.linkedin.com/in/emantilla2000
+        rel: me
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
-
-
+    theme: 
+      - html/style.scss
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai
 

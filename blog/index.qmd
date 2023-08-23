@@ -1,0 +1,17 @@
+---
+title: "Blog"
+author: ""
+title-block-banner: true
+description-meta: "Elías Mantilla's Blog"
+listing:
+  id: posts
+  contents: "contents/**/index.qmd"
+  template: ../html/blog/listing.ejs
+page-layout: full
+comments: false
+---
+
+## Posts
+
+:::{#posts}
+:::
