@@ -22,6 +22,7 @@ author-meta: "Elías Mantilla"
 website:
   title: "Elías José Mantilla Ibarra"
   description: "{{< meta description-meta >}}"
+  favicon: /assets/favicon.ico
   
   
   navbar: 

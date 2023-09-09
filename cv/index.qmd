@@ -4,7 +4,7 @@ description-meta: "Curriculum Vitae"
 title-block-banner: true
 engine: knitr
 cv:
-  pdf: "2023-08-23-elias_mantilla_cv.pdf"
+  pdf: "2023-09-07-elias_mantilla_cv.pdf"
 ---
 
 ```{css echo=FALSE}
