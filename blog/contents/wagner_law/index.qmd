@@ -3,6 +3,7 @@ title: "Wagner's Law"
 subtitle: "Regression Modeling To Explore The Relationship Between Government Size And Economic Development"
 author: "Elías José Mantilla Ibarra"
 format: html
+image: img/thumbnail.png
 code-fold: true
 ---
 
