@@ -14,6 +14,8 @@ project:
   resources: 
     - "assets/"
     
+freeze: true
+    
 # Metadata
 pagetitle: "{{< meta title >}} | Elías Mantilla"
 description-meta: "Elías Mantilla: A personal and professional site"
@@ -53,7 +55,7 @@ website:
 format:
   html:
     theme: 
-      - html/style.scss
+      - html\style.scss
     toc: false
     code-link: true
     anchor-sections: true
