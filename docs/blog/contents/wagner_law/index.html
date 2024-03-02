@@ -9,7 +9,7 @@
 <meta name="author" content="Elías Mantilla">
 <meta name="description" content="Elías Mantilla: A personal and professional site">
 
-<title>Wagner’s Law | Elías Mantilla</title>
+<title>?meta:title | Elías Mantilla</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,6 +125,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../portfolio/index.html" rel="" target="">
+ <span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../blog/index.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
@@ -161,38 +165,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Wagner’s Law</h1>
-<p class="subtitle lead">Regression Modeling To Explore The Relationship Between Government Size And Economic Development</p>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Elías José Mantilla Ibarra </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-</header>
-
+<!-- --- -->
+<!-- title: "Wagner's Law" -->
+<!-- subtitle: "Regression Modeling To Explore The Relationship Between Government Size And Economic Development" -->
+<!-- author: "Elías José Mantilla Ibarra" -->
+<!-- format: html -->
+<!-- image: img/thumbnail.png -->
+<!-- code-fold: true -->
+<!-- --- -->
 <section id="wagners-law-on-the-importance-of-politics" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="wagners-law-on-the-importance-of-politics">Wagner’s Law &amp; On the Importance of Politics</h3>
 <p>Political institutions — constrains and incentives — determine the final outcome of collective decisions which, in the realm of economic policy for instance, matter to explain economic outcomes. The New Political Economics focus on the determination of equilibrium policy outcomes, such as the inflation rate, whereas neoclassical economics would take those variables as endogenously given. Shortcomings of traditional models in economics have inspired waves of professionals entering the field to pay attention and explicitly account for the role of politics.</p>
 <p>Wagner’s Law is one example that illustrates how merely economic indicators fail to fully account for the variability observed in the real world. Wagner’s Law, named after the originator of the thesis, states that as nations develop and incomes rise, the public sector will grow in relative importance. In their introductory textbook, authors Leopoldo Fergusson and Pablo Querubín (2018), use this example as a leading proposition for the argument in favor of studying and paying attention to politics.</p>
 <p>In order to understand the validity of Wagner’s Law in the world, data can be collected on national income and government size as measured by government outlays and tax income. The two following graphics are reproduced from the book. Both consist of scatter plots that relate the two measure of government size to national income. Both series of government expenses and tax revenue are expressed as percentage of GDP. National Income is the purchasing power parity adjusted Gross National Income per capita in 2017 USD dollars.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import all necessary libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(WDI)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -247,12 +235,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(iso2c, year)) <span class="sc">%&gt;%</span></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(polity <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(country, polity2)), <span class="at">by =</span> <span class="st">"country"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>The resulting graphics show that there is much variability left unexplained by incomes only. Countries with less national income per capita such as Ecuador or Brazil show similar levels of government spending as the US or Sweden. The case is very similar for the levels of tax income. This is to be expected as there are many factors influencing government expenditures. A reason behind the wide variability in levels of government spending is that some countries may finance larger social programs than others. This sorts of decisions are taken after a process of deliberation that involve the coming together of heterogeneous interests.</p>
 <div class="cell page-columns page-full">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot of government expenses vs national income</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(rgnppc, govexp)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">1</span>, <span class="at">stroke=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -267,7 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GNI per capita"</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-1" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -278,8 +262,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell page-columns page-full">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot of tax revenue vs national income</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(rgnppc, govtax)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">1</span>, <span class="at">stroke=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -294,7 +276,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GNI per capita"</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-2" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -311,8 +292,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the present blog post, I do not assume anything about the data generating process and, instead, focus on understanding and characterizing the data collected, as is. Therefore, I will not use the terminology of effects to describe and interpret the regression model’s coefficients but I will make comparison between the countries. Further, it must be mentioned that for that terminology to make sense I would have to convince you, dear reader, that an intervention or interference separated two distinguishable groups: control and treatment. This intervention exists and matters regarding the data generating process. In this particular case, we can only account for observational patterns.</p>
 <p>It is of interest to understand, empirically, the relation between government expenses and national income. First, it is useful to explore the variable of interest in isolation and then move to bivariate relationship. The empirical cumulative distribution function, ECDF, is plotted in <a href="#fig-3">Figure&nbsp;3</a>. The average level of government expenses sits around 26%. More than three quarters of countries’ governments spend less than 35% of GDP, thus leaving about 20 countries with government expenses over that level of GDP. As can be seen in <a href="#fig-1">Figure&nbsp;1</a>, countries whose government expenses are over that level span across the full spectrum in terms of national income, which suggest that, indeed, the variation in this variable of interest cannot be explained by national income alone. Nevertheless, a linear regression model is always a useful starting point to characterize the relation between two variables.</p>
 <div class="cell page-columns page-full">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `ecdf` function calculate vector for the empirical cumulative distribution</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ecdf <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">length</span>(data)</span>
@@ -340,7 +319,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) </span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-3" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -352,8 +330,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As recommended by Gelman et al (2020), we start with a simple model that includes only one predictor. Namely, that of national income, the predictor of interest. We standardize national income by transforming it to its z-score. This transformation is justified by the wide range of the original scale and, also, it makes interpretation easier. The computational engine we are going to use is from the <code>rstanarm</code> package with null priors to obtain the maximum likelihood estimates.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-scale using z-score</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span> </span>
@@ -377,26 +353,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="sc">~</span> <span class="st">"Baseline"</span>,</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                 zrgnppc <span class="sc">~</span> <span class="st">"GNI per capita, PPP (z-score)"</span>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 
-<div id="tourdkerew" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tourdkerew table {
+<div id="zfkxfzwlcs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zfkxfzwlcs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tourdkerew thead, #tourdkerew tbody, #tourdkerew tfoot, #tourdkerew tr, #tourdkerew td, #tourdkerew th {
+#zfkxfzwlcs thead, #zfkxfzwlcs tbody, #zfkxfzwlcs tfoot, #zfkxfzwlcs tr, #zfkxfzwlcs td, #zfkxfzwlcs th {
   border-style: none;
 }
 
-#tourdkerew p {
+#zfkxfzwlcs p {
   margin: 0;
   padding: 0;
 }
 
-#tourdkerew .gt_table {
+#zfkxfzwlcs .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -422,12 +397,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#tourdkerew .gt_caption {
+#zfkxfzwlcs .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tourdkerew .gt_title {
+#zfkxfzwlcs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -439,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#tourdkerew .gt_subtitle {
+#zfkxfzwlcs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -451,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#tourdkerew .gt_heading {
+#zfkxfzwlcs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -463,13 +438,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tourdkerew .gt_bottom_border {
+#zfkxfzwlcs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tourdkerew .gt_col_headings {
+#zfkxfzwlcs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -484,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tourdkerew .gt_col_heading {
+#zfkxfzwlcs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -504,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#tourdkerew .gt_column_spanner_outer {
+#zfkxfzwlcs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -516,15 +491,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#tourdkerew .gt_column_spanner_outer:first-child {
+#zfkxfzwlcs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tourdkerew .gt_column_spanner_outer:last-child {
+#zfkxfzwlcs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tourdkerew .gt_column_spanner {
+#zfkxfzwlcs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -536,11 +511,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#tourdkerew .gt_spanner_row {
+#zfkxfzwlcs .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tourdkerew .gt_group_heading {
+#zfkxfzwlcs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -566,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#tourdkerew .gt_empty_group_heading {
+#zfkxfzwlcs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -581,15 +556,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#tourdkerew .gt_from_md > :first-child {
+#zfkxfzwlcs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tourdkerew .gt_from_md > :last-child {
+#zfkxfzwlcs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tourdkerew .gt_row {
+#zfkxfzwlcs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -608,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#tourdkerew .gt_stub {
+#zfkxfzwlcs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -621,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tourdkerew .gt_stub_row_group {
+#zfkxfzwlcs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -635,15 +610,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#tourdkerew .gt_row_group_first td {
+#zfkxfzwlcs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tourdkerew .gt_row_group_first th {
+#zfkxfzwlcs .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tourdkerew .gt_summary_row {
+#zfkxfzwlcs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -653,16 +628,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tourdkerew .gt_first_summary_row {
+#zfkxfzwlcs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tourdkerew .gt_first_summary_row.thick {
+#zfkxfzwlcs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tourdkerew .gt_last_summary_row {
+#zfkxfzwlcs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -672,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#tourdkerew .gt_grand_summary_row {
+#zfkxfzwlcs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -682,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tourdkerew .gt_first_grand_summary_row {
+#zfkxfzwlcs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -692,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#tourdkerew .gt_last_grand_summary_row_top {
+#zfkxfzwlcs .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -702,11 +677,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#tourdkerew .gt_striped {
+#zfkxfzwlcs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tourdkerew .gt_table_body {
+#zfkxfzwlcs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -715,7 +690,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#tourdkerew .gt_footnotes {
+#zfkxfzwlcs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -729,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tourdkerew .gt_footnote {
+#zfkxfzwlcs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -738,7 +713,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tourdkerew .gt_sourcenotes {
+#zfkxfzwlcs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -752,7 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tourdkerew .gt_sourcenote {
+#zfkxfzwlcs .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -760,63 +735,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tourdkerew .gt_left {
+#zfkxfzwlcs .gt_left {
   text-align: left;
 }
 
-#tourdkerew .gt_center {
+#zfkxfzwlcs .gt_center {
   text-align: center;
 }
 
-#tourdkerew .gt_right {
+#zfkxfzwlcs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tourdkerew .gt_font_normal {
+#zfkxfzwlcs .gt_font_normal {
   font-weight: normal;
 }
 
-#tourdkerew .gt_font_bold {
+#zfkxfzwlcs .gt_font_bold {
   font-weight: bold;
 }
 
-#tourdkerew .gt_font_italic {
+#zfkxfzwlcs .gt_font_italic {
   font-style: italic;
 }
 
-#tourdkerew .gt_super {
+#zfkxfzwlcs .gt_super {
   font-size: 65%;
 }
 
-#tourdkerew .gt_footnote_marks {
+#zfkxfzwlcs .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tourdkerew .gt_asterisk {
+#zfkxfzwlcs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tourdkerew .gt_indent_1 {
+#zfkxfzwlcs .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tourdkerew .gt_indent_2 {
+#zfkxfzwlcs .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tourdkerew .gt_indent_3 {
+#zfkxfzwlcs .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tourdkerew .gt_indent_4 {
+#zfkxfzwlcs .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tourdkerew .gt_indent_5 {
+#zfkxfzwlcs .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -835,7 +810,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="ci" class="gt_row gt_center">24, 28</td></tr>
     <tr><td headers="label" class="gt_row gt_left">GNI per capita, PPP (z-score)</td>
 <td headers="estimate" class="gt_row gt_center">4.3</td>
-<td headers="ci" class="gt_row gt_center">2.4, 6.2</td></tr>
+<td headers="ci" class="gt_row gt_center">2.3, 6.2</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -847,12 +822,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>From the fitted model we know that the government expenditure level of the country with average national income is 26.15%. The point estimate of the difference in expenditure level for a country whose national income is one standard deviation away is 4.35 percentage points in either direction, and it is 8.69 percentage points for a country that sits two standard deviations away. This is useful, as it argues in favor of a positive relation between the variable of interest, government expenses, and the main predictor, national income. Note, however, that there is strong predictive uncertainty in that the error standard deviation, how far off predictions are likely to be from the true value, is 9.44. This, of course, complicates inference but it is also evidence that national income cannot fully account for the variability observed in the level of government expenditures in this cross-section of countries.</p>
+<p>From the fitted model we know that the government expenditure level of the country with average national income is 26.30%. The point estimate of the difference in expenditure level for a country whose national income is one standard deviation away is 4.29 percentage points in either direction, and it is 8.58 percentage points for a country that sits two standard deviations away. This is useful, as it argues in favor of a positive relation between the variable of interest, government expenses, and the main predictor, national income. Note, however, that there is strong predictive uncertainty in that the error standard deviation, how far off predictions are likely to be from the true value, is 9.51. This, of course, complicates inference but it is also evidence that national income cannot fully account for the variability observed in the level of government expenditures in this cross-section of countries.</p>
 <p>The same model was fitted again without the standardization and plotted in <a href="#fig-4">Figure&nbsp;4</a>. From a visual inspection, we observe that the model does not fit the data perfectly. The cloud of points allows us to hypothesize that a more accurate relation would be polynomial as the points form a U-shape that increases but eventually stagnates and declines. For national incomes below $30,000 USD, the relation appears positive and stronger than suggested by the fitted model. Beyond the point, the relation flattens out and even becomes negative. This latter trend is led by countries such as Canada, the USA, Ireland and the United Arab Emirates.</p>
 <p>Posterior simulations offer us parameter sets that are used to plot more lines around the fitted model so as to represent the uncertainty of this linear predictor.</p>
 <div class="cell page-columns page-full">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit simple linear regression model in original scale</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fit<span class="fl">.2</span> <span class="ot">&lt;-</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stan_glm</span>(</span>
@@ -895,7 +868,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GNI per capita"</span></span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-4" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -910,8 +882,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="controlling-for-political-regime-type">Controlling for Political Regime Type</h3>
 <p>Given the initial comments on the importance of politics, an extension to the current model may consist of the inclusion of a political variable. More specifically, we include a proxy for the regime type. The data set comes from the Polity IV project whose aim to unveil the political regimes and structures across the globe. The proxy for the regime type used in the post if the discretized polity score. The polity score exists in the range from -10 to 10 where higher scores indicate a more democratic regime. The score is made discrete by means of binning. Scores of less than -5 will be considered authoritarian, score greater than 5 will be considered democratic and those in the middle range will be considered “mixed”. This choice is arbitrary and its sole purpose is to illustrate a simple relationship clearly.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretize polity2 index</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span> </span>
@@ -948,26 +918,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                 dem <span class="sc">~</span> <span class="st">"Democratic Regime"</span>,</span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                 mix <span class="sc">~</span> <span class="st">"Mixed Regime"</span>)</span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 
-<div id="cxyjvizgkb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cxyjvizgkb table {
+<div id="zcomeipovm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zcomeipovm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cxyjvizgkb thead, #cxyjvizgkb tbody, #cxyjvizgkb tfoot, #cxyjvizgkb tr, #cxyjvizgkb td, #cxyjvizgkb th {
+#zcomeipovm thead, #zcomeipovm tbody, #zcomeipovm tfoot, #zcomeipovm tr, #zcomeipovm td, #zcomeipovm th {
   border-style: none;
 }
 
-#cxyjvizgkb p {
+#zcomeipovm p {
   margin: 0;
   padding: 0;
 }
 
-#cxyjvizgkb .gt_table {
+#zcomeipovm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -993,12 +962,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_caption {
+#zcomeipovm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cxyjvizgkb .gt_title {
+#zcomeipovm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1010,7 +979,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#cxyjvizgkb .gt_subtitle {
+#zcomeipovm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1022,7 +991,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#cxyjvizgkb .gt_heading {
+#zcomeipovm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1034,13 +1003,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_bottom_border {
+#zcomeipovm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_col_headings {
+#zcomeipovm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1055,7 +1024,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_col_heading {
+#zcomeipovm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1075,7 +1044,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#cxyjvizgkb .gt_column_spanner_outer {
+#zcomeipovm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1087,15 +1056,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#cxyjvizgkb .gt_column_spanner_outer:first-child {
+#zcomeipovm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cxyjvizgkb .gt_column_spanner_outer:last-child {
+#zcomeipovm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cxyjvizgkb .gt_column_spanner {
+#zcomeipovm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1107,11 +1076,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#cxyjvizgkb .gt_spanner_row {
+#zcomeipovm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cxyjvizgkb .gt_group_heading {
+#zcomeipovm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1137,7 +1106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#cxyjvizgkb .gt_empty_group_heading {
+#zcomeipovm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1152,15 +1121,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#cxyjvizgkb .gt_from_md > :first-child {
+#zcomeipovm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cxyjvizgkb .gt_from_md > :last-child {
+#zcomeipovm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cxyjvizgkb .gt_row {
+#zcomeipovm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1179,7 +1148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#cxyjvizgkb .gt_stub {
+#zcomeipovm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1192,7 +1161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#cxyjvizgkb .gt_stub_row_group {
+#zcomeipovm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1206,15 +1175,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#cxyjvizgkb .gt_row_group_first td {
+#zcomeipovm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cxyjvizgkb .gt_row_group_first th {
+#zcomeipovm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cxyjvizgkb .gt_summary_row {
+#zcomeipovm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1224,16 +1193,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#cxyjvizgkb .gt_first_summary_row {
+#zcomeipovm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_first_summary_row.thick {
+#zcomeipovm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cxyjvizgkb .gt_last_summary_row {
+#zcomeipovm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1243,7 +1212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_grand_summary_row {
+#zcomeipovm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1253,7 +1222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#cxyjvizgkb .gt_first_grand_summary_row {
+#zcomeipovm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1263,7 +1232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_last_grand_summary_row_top {
+#zcomeipovm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1273,11 +1242,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_striped {
+#zcomeipovm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cxyjvizgkb .gt_table_body {
+#zcomeipovm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1286,7 +1255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_footnotes {
+#zcomeipovm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1300,7 +1269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_footnote {
+#zcomeipovm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1309,7 +1278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#cxyjvizgkb .gt_sourcenotes {
+#zcomeipovm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1323,7 +1292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#cxyjvizgkb .gt_sourcenote {
+#zcomeipovm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1331,63 +1300,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#cxyjvizgkb .gt_left {
+#zcomeipovm .gt_left {
   text-align: left;
 }
 
-#cxyjvizgkb .gt_center {
+#zcomeipovm .gt_center {
   text-align: center;
 }
 
-#cxyjvizgkb .gt_right {
+#zcomeipovm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cxyjvizgkb .gt_font_normal {
+#zcomeipovm .gt_font_normal {
   font-weight: normal;
 }
 
-#cxyjvizgkb .gt_font_bold {
+#zcomeipovm .gt_font_bold {
   font-weight: bold;
 }
 
-#cxyjvizgkb .gt_font_italic {
+#zcomeipovm .gt_font_italic {
   font-style: italic;
 }
 
-#cxyjvizgkb .gt_super {
+#zcomeipovm .gt_super {
   font-size: 65%;
 }
 
-#cxyjvizgkb .gt_footnote_marks {
+#zcomeipovm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cxyjvizgkb .gt_asterisk {
+#zcomeipovm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cxyjvizgkb .gt_indent_1 {
+#zcomeipovm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cxyjvizgkb .gt_indent_2 {
+#zcomeipovm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cxyjvizgkb .gt_indent_3 {
+#zcomeipovm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cxyjvizgkb .gt_indent_4 {
+#zcomeipovm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cxyjvizgkb .gt_indent_5 {
+#zcomeipovm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1403,16 +1372,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Baseline</td>
 <td headers="estimate" class="gt_row gt_center">15</td>
-<td headers="ci" class="gt_row gt_center">8.0, 22</td></tr>
+<td headers="ci" class="gt_row gt_center">8.1, 22</td></tr>
     <tr><td headers="label" class="gt_row gt_left">GNI per capita, PPP (z-score)</td>
-<td headers="estimate" class="gt_row gt_center">3.8</td>
-<td headers="ci" class="gt_row gt_center">1.9, 5.8</td></tr>
+<td headers="estimate" class="gt_row gt_center">3.7</td>
+<td headers="ci" class="gt_row gt_center">1.6, 5.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Democratic Regime</td>
 <td headers="estimate" class="gt_row gt_center">13</td>
-<td headers="ci" class="gt_row gt_center">5.8, 20</td></tr>
+<td headers="ci" class="gt_row gt_center">5.7, 20</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Mixed Regime</td>
-<td headers="estimate" class="gt_row gt_center">7.0</td>
-<td headers="ci" class="gt_row gt_center">-1.4, 16</td></tr>
+<td headers="estimate" class="gt_row gt_center">6.7</td>
+<td headers="ci" class="gt_row gt_center">-2.0, 15</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -1425,12 +1394,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>A first impression is that there is a high degree of uncertainty around the point estimates given the wide credible intervals. There are two reasons for this. First, it must be noted that a linear model may not be an appropriate choice to represent the relationship between these variables. Second, this data set is imbalanced with almost 78% of the countries in the category of democratic regime, 15% in the category of mixed regime, and close to 6% in the category of authoritarian.</p>
-<p>Although the task of statistical inference is made hard due to the uncertainty in the parameters, it is still useful to make comparisons given the estimates of the model. If, for instance, we accept the proposed scheme for discretization, we can compare the average levels of government expenditure between the countries in the three categories. The difference in government expenditure is, on average, 13.02% percentage points with 65% chances that is it 3.62 percentage points away and 95% chances that is 7.25 percentage points away. This comparison can be seen graphically in <a href="#fig-5">Figure&nbsp;5</a>. It also illustrates its limitations including potential varying marginal effects and different sample size for each category.</p>
+<p>Although the task of statistical inference is made hard due to the uncertainty in the parameters, it is still useful to make comparisons given the estimates of the model. If, for instance, we accept the proposed scheme for discretization, we can compare the average levels of government expenditure between the countries in the three categories. The difference in government expenditure is, on average, 13.06% percentage points with 65% chances that is it 3.76 percentage points away and 95% chances that is 7.52 percentage points away. This comparison can be seen graphically in <a href="#fig-5">Figure&nbsp;5</a>. It also illustrates its limitations including potential varying marginal effects and different sample size for each category.</p>
 <p>Finally, <a href="#fig-6">Figure&nbsp;6</a> better illustrates the uncertainty in the parameters’ point estimates. Even tough there is a difference between each of the categories, the degree of uncertainty does not allow us to make any definitive claims about their differences.</p>
 <p>Improvements are foreshadowed in the inclusion of more and better controls. Although this results are disappointing, it is a relief to know that the variation observed in the levels of government expenditures needs to be attributed to more factors other than national income and better variables other than the rather simple and arbitrary one used for this work.</p>
 <div class="cell page-columns page-full">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear saturated model with national income in original scale </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fit<span class="fl">.4</span> <span class="ot">&lt;-</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stan_glm</span>(</span>
@@ -1478,7 +1445,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
 <span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-5" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -1489,8 +1455,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell page-columns page-full">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect simulations</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sims<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(fit<span class="fl">.3</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1533,7 +1497,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.x =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"#808080"</span>, <span class="at">linewidth =</span> <span class="fl">0.01</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>),</span>
 <span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-6" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">

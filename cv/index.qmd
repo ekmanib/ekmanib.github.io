@@ -1,5 +1,6 @@
 ---
 title: Curriculum Vitae
+pagetitle: "{{< meta website.title >}}"
 description-meta: "Curriculum Vitae"
 title-block-banner: true
 engine: knitr

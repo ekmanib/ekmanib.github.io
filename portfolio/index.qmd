@@ -1,0 +1,9 @@
+---
+title: "Portfolio"
+pagetitle: "{{< meta website.title >}}"
+title-block-banner: true
+format: 
+  html: 
+    quarto-template-params:
+      banner-header-class: "home"
+---

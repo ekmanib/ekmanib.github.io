@@ -1,5 +1,6 @@
 ---
 title: "Blog"
+pagetitle: "{{< meta website.title >}}"
 author: ""
 title-block-banner: true
 description-meta: "Elías Mantilla's Blog"
